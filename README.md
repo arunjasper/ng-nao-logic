@@ -62,14 +62,19 @@ NG-NAO-LOGIC/
 ```
 ## Technologies Used
 
+```
 Angular 21 - Frontend framework
 TypeScript - Programming language
 NgRx-SignalStore - State Management library
 RxJS - Reactive programming library
 NgRx-Toolkit - State persistence on page refresh (Session Storage/Local Storage)
 
+```
 
-# Demo![NaoLogic application demo](https://file%2B.vscode-resource.vscode-cdn.net/Users/jasper/Desktop/code/ng-nao-logic/public/demo/Demo.gif?version%3D1771571017024)
+# Demo
+
+
+![NaoLogic application demo](./public/demo/demo.gif)
 
 
 
