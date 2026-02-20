@@ -1,0 +1,79 @@
+<div class="timeline-grid">
+    <!-- Top-Left: Work Centers Header -->
+    <div class="work-centers-header">
+        <span>Work Center</span>
+    </div>
+
+    <!-- Top-Right: Timeline Header -->
+    <div class="timeline-header-row" #timelineHeader>
+        @for (column of columns(); track trackByColumn($index, column)) {
+        <div class="timeline-column-header" [style.width.px]="gridHelper.columnWidth()">
+            <span class="column-label">{{ column.label }}</span>
+        </div>
+        }
+    </div>
+
+    <!-- Bottom-Left: Work Centers List -->
+    <div class="wc-list" #workCentersList>
+        @for (wc of workCenters(); track wc.docId) {
+        <div class="wc-row" [class.hovered]="hoveredRowId() === wc.docId"
+            [class.selected]="wc.docId === selectedWorkCenter()?.docId" (click)="onCenterSelected(wc)"
+            (keyup)="onCenterSelected(wc)"
+            (mouseenter)="onRowMouseEnter(wc.docId)" (mouseleave)="onRowMouseLeave()">
+            <span class="work-center-name">{{ wc.data.name }}</span>
+        </div>
+
+        }
+    </div>
+
+    <div class="timeline-content" #timelineContent (scroll)="onTimelineScroll($event)">
+        <div class="timeline-inner" [style.width.px]="totalWidth()">
+            <!-- Column dividers (full height vertical lines) -->
+            @for (column of columns(); track trackByColumn($index, column); let i = $index) {
+            <div class="column-divider" [class.current-month-divider]="column.isCurrent"
+                [style.left.px]="i * gridHelper.columnWidth()"></div>
+            }
+
+            <!-- Current Month Badge -->
+            @if (currentPeriodBadgePosition() !== null) {
+            <div class="current-period-badge" [style.left.px]="currentPeriodBadgePosition()">
+                Current month
+            </div>
+            }
+
+            <!-- Timeline Rows -->
+            <div class="timeline-rows">
+                @for (wc of workCenters(); track wc.docId) {
+                <div class="timeline-row" [class.hovered]="hoveredRowId() === wc.docId"
+                    [class.selected]="wc.docId === selectedWorkCenter()?.docId" (mouseenter)="onRowMouseEnter(wc.docId)"
+                    (mouseleave)="onRowMouseLeave()">
+                    <div class="timeline-row-content" (click)="onTimelineClick($event, wc)" 
+                        (mousemove)="onTimelineMouseMove($event, wc.docId)" (mouseleave)="onTimelineMouseLeave()">
+
+                        <!-- Hover placeholder -->
+                        @if (hoverPlaceholder() && hoverPlaceholder()!.workCenterId === wc.docId) {
+                        <div class="hover-placeholder" [style.left.px]="hoverPlaceholder()!.left"
+                            [style.width.px]="hoverPlaceholder()!.width"></div>
+                        }
+
+                        <!-- Work Order Bars -->
+                        @for (workOrder of getWorkOrdersForCenter(wc.docId); track workOrder.docId) {
+                        <app-work-order-bar [workOrder]="workOrder" [left]="getBarLeft(workOrder)"
+                            [width]="getBarWidth(workOrder)" (edit)="onOrderEdit($event)"
+                            (menuToggled)="onMenuToggle($event, workOrder.docId)"
+                            (delete)="onOrderDelete($event)" />
+                        }
+
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Tooltip -->
+@if (showTooltip()) {
+<div class="click-tooltip" [style.left.px]="tooltipPosition().x" [style.top.px]="tooltipPosition().y">
+    Click to add dates
+</div>
+}

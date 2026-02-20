@@ -1,0 +1,6 @@
+@if (open()) {
+<div class="drawer-backdrop" (click)="closeNav()"></div>
+}
+<div id="drawer" class="drawer right" [ngClass]="open() ? 'expand' : ''">
+    <ng-content></ng-content>
+</div>

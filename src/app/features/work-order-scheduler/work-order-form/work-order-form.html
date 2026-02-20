@@ -1,0 +1,59 @@
+<div>
+    <form [formGroup]="form" (ngSubmit)="onSave()">
+        <div class="panel-header">
+            <div class="header-titles">
+                <h2 class="title">Work Order Details</h2>
+                <p class="subtitle">Specify the dates, name and status for this order</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn-cancel" type="button" (click)="onCancel()">Cancel</button>
+                <button class="btn-create" [disabled]=" form.pristine" type="submit">
+                    {{ mode() === 'create' ? 'Create' : 'Save' }}
+                </button>
+            </div>
+        </div>
+        <hr class="divider">
+        <div class="panel-body">
+      
+            @if (form.hasError('dateOverlap')){
+            <span class="error-message">Work order overlaps with an existing order</span>
+            }
+            @if (form.hasError('startBeforeEnd')){
+            <span class="error-message">End date must be after the start date.</span>
+            }
+            <div class="form-group">
+                <label for="name" class="label">Work Order Name</label>
+                <input type="text" class="input-box" id="name" formControlName="name" placeholder="Work Order Name">
+            </div>
+            @if(form.get('name')?.invalid &&
+            (form.get('name')?.touched || form.get('name')?.dirty)){
+            @if(form.get('name')?.hasError('required')){
+            <span class="error-message"> Work Order Name is required </span>
+            }
+            }
+            <div class="form-group">
+                <label for="status" class="label">Status</label>
+                <ng-select id="status" class="status-select" [items]="statusOptions" bindLabel="label" bindValue="value"
+                    formControlName="status" [searchable]="false" [clearable]="false">
+                    <ng-template ng-label-tmp let-item="item">
+                        <span class="status" [ngClass]="item.value">{{ item.label }}</span>
+                    </ng-template>
+                    <ng-template ng-option-tmp let-item="item">
+                        <span class="status-option-text">{{ item.label }}</span>
+                    </ng-template>
+                </ng-select>
+            </div>
+            <div class="form-group">
+                <label for="startDate" class="label">Start date</label>
+                <input id="startDate" class="input-box" placeholder="MM.DD.YYYY" formControlName="startDate" ngbDatepicker
+                    #startDatePicker="ngbDatepicker" navigation="select" (click)="startDatePicker.open()" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="endDate" class="label">End date</label>
+                <input id="endDate" class=" input-box" placeholder="MM.DD.YYYY" formControlName="endDate" ngbDatepicker
+                    #endDatePicker="ngbDatepicker" navigation="select" (click)="endDatePicker.open()" readonly />
+            </div>
+        </div>
+    </form>
+</div>

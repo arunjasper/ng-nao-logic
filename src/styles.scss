@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@use 'common' as *;
+@use 'bootstrap/scss/bootstrap';
+
+body {
+    font-family: $font-family-base;
+    margin: 0;
+    padding: 0;
+    color: $color-text-main;
+    background-color: $bg-color;
+}

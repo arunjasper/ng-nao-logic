@@ -1,0 +1,191 @@
+@use "../../../../common" as *;
+
+.work-order-bar {
+    @include work-order-bar-base;
+
+    &.menu-open {
+        z-index: 100;
+    }
+
+    // Status-based colors with box-shadow borders (using variables)
+    &.status-open {
+        @include work-order-bar-status($status-open-bar-bg, $text-primary);
+        box-shadow: 0 0 0 1px $status-open-bar-border;
+    }
+
+    &.status-in-progress {
+        @include work-order-bar-status($status-in-progress-bar-bg, $text-primary);
+        box-shadow: 0 0 0 1px $status-in-progress-bar-border;
+    }
+
+    &.status-complete {
+        @include work-order-bar-status($status-complete-bar-bg, $text-primary);
+        box-shadow: 0 0 0 1px $status-complete-bar-border;
+    }
+
+    &.status-blocked {
+        @include work-order-bar-status($status-blocked-bar-bg, $text-primary);
+        box-shadow: 0 0 0 1px $status-blocked-bar-border;
+    }
+
+    // open the context menu
+    &:hover {
+        transform: translateY(-1px);
+
+        .menu-trigger {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    }
+}
+
+.work-order-content {
+    display: flex;
+    justify-content: end;
+}
+
+.bar-name {
+    margin-right: $padding-sm;
+    @include text-ellipsis;
+    flex-shrink: 1;
+    min-width: 0;
+}
+
+.status-ml {
+    margin-left: auto;
+}
+
+.menu-wrapper {
+    position: relative;
+    flex-shrink: 0;
+    margin-left: $padding-sm;
+    z-index: $z-index-dropdown;
+
+}
+
+.menu-button {
+    width: 24px;
+    height: 22px;
+    @include flex-center;
+    background-color: rgba(241, 243, 248, 1);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: rgba(47, 48, 89, 1);
+    opacity: 0;
+    transition: opacity $transition-normal, background-color $transition-normal;
+
+    .work-order-bar:hover &,
+    &.visible {
+        opacity: 1;
+    }
+
+    &:hover {
+        background-color: rgba(230, 232, 240, 1);
+    }
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 4px;
+    z-index: 1000;
+    width: 200px;
+    height: 80px;
+    box-shadow: 0 0 0 1px rgba(104, 113, 150, 0.1),
+        0 2.5px 3px -1.5px rgba(200, 207, 233, 1),
+        0 4.5px 5px -1px rgba(216, 220, 235, 1);
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+}
+
+
+.menu-item {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+    width: 100%;
+    border: none;
+    background: transparent;
+    text-align: left;
+    font-family: 'CircularStd-Book', 'Circular-Std', 'Helvetica Neue', sans-serif;
+    ;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(3, 9, 41, 1);
+    cursor: pointer;
+
+    &:hover {
+        background-color: #F8FAFC;
+    }
+}
+
+.dropdown-item {
+    @include dropdown-item;
+
+    &.dropdown-item-delete {
+        color: $error-text;
+
+        &:hover {
+            background-color: $error-bg;
+        }
+    }
+}
+
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    height: 22px;
+    padding: 0 $padding-sm;
+    border-radius: 5px;
+    font-family: "CircularStd-Book", "Circular-Std", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    flex-shrink: 0;
+    white-space: nowrap;
+
+    // Use centralized status colors from variables
+    @include status-badge-colors;
+
+    &.status-open {
+        border: 1px solid $status-open-bar-border;
+    }
+}
+
+
+.menu-trigger {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s, background-color 0.2s;
+    flex-shrink: 0;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    i {
+        color: #64748B;
+        font-size: 14px;
+    }
+}
+
+.menu-container {
+    position: relative;
+}

@@ -1,0 +1,256 @@
+@use "../../../common" as *;
+
+.wos-layout {
+    padding: 0 45px 0 0;
+
+    .wos-title {
+        width: auto;
+        height: 34px;
+        font-family: "Circular-Std", sans-serif;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 34px;
+        color: rgba(3, 9, 41, 1);
+        margin: 0 0 24px 0;
+        white-space: nowrap;
+    }
+
+    .h1-title {
+        width: 142px;
+        height: 34px;
+        color: rgba(3, 9, 41, 1);
+        font-family: CircularStd-Medium;
+        font-size: 24px;
+        font-weight: 500;
+        font-style: medium;
+    }
+
+    .controls-area {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        width: 146px;
+        height: 25px;
+        box-shadow: 1px 2.5px 3px -1.5px rgba(200, 207, 233, 1);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 1);
+
+        .timescale-pill {
+            display: flex;
+            align-items: center;
+            width: 146px;
+            height: 25px;
+            box-shadow: 1px 2.5px 3px -1.5px rgba(200, 207, 233, 1);
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 1);
+        }
+
+        .timescale-label {
+            border-radius: 5px 0px 0px 5px;
+            background-color: rgba(241, 243, 248, 0.75);
+            padding: 4px 8px 5px 8px;
+            color: rgba(104, 113, 150, 1);
+            font-family: CircularStd-Book;
+            font-size: 13px;
+            font-weight: 400;
+            font-style: book;
+        }
+
+        .timescale-dd {
+            display: flex;
+            width: 75px;
+            border-radius: 0px 5px 5px 0px;
+            padding: 4px 8px 5px 8px;
+            color: rgba(62, 64, 219, 1);
+            font-family: CircularStd-Medium;
+            font-size: 13px;
+            font-weight: 500;
+            font-style: medium;
+        }
+
+        .timescale-dd:after {
+            content: url('../../../../public/images/Down.svg');
+            margin-left: -8px;
+        }
+    }
+
+    .schedule-viewport {
+        display: flex;
+        border: 1px solid #e2e8f0;
+        background: rgba(255, 255, 255, 1);
+        height: calc(100vh - 150px);
+        overflow: hidden;
+        position: relative;
+
+        .sidebar-area {
+            width: 380px;
+            min-width: 250px;
+            flex-shrink: 0;
+            border-right: 1px solid rgba(230, 235, 240, 1);
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .grid-area {
+            flex: 1;
+            width: 0;
+            overflow: auto;
+        }
+
+        .schedule-viewport {
+            display: flex;
+            justify-content: flex-start;
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    .schedule-viewport {
+        // flex-direction: column;
+
+        .sidebar-area {
+            width: 150px;
+            border-right: none;
+            border-bottom: 1px solid rgba(230, 235, 240, 1);
+            overflow: hidden;
+        }
+
+        .grid-area {
+            width: 100%;
+        }
+    }
+}
+
+
+.sidebar-area {
+    width: 250px;
+    min-width: 250px;
+    flex-shrink: 0;
+    border-right: 1px solid #e2e8f0;
+    z-index: 20;
+    background: #fff;
+}
+
+.grid-area {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+app-timeline-grid {
+    flex: 1;
+    overflow: hidden;
+}
+
+.wc-container {
+    width: 100%;
+    background: $bg-white;
+    border-right: 1px solid #e2e8f0;
+}
+
+.wc-header {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    padding-left: 31px;
+    border-bottom: 1px solid #e2e8f0;
+    background: $bg-white;
+}
+
+.header-text {
+    width: 138px;
+    height: 16px;
+    color: $color-title;
+    font-family: $font-family;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
+}
+
+.wc-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.wc-row {
+    display: flex;
+    align-items: center;
+    padding-left: 28px;
+    height: 48px;
+    color: $color-text;
+    font-family: $font-family-regular;
+    font-size: 14px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.wc-row:hover {
+    background-color: $bg-alt;
+}
+
+.wc-row,
+.header-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.wc-row.selected {
+    background-color: rgba(238, 240, 255, 1) !important;
+    // Optional: Add a left border to match the grid selection style
+    border-left: 3px solid #6366f1;
+}
+
+/*--------------- styles for ng-select ----------*/
+
+:host ::ng-deep {
+    .ng-select-opened .ng-select-container {
+        z-index: 1001;
+    }
+
+    .ng-select .ng-select-container {
+        cursor: default;
+        display: flex;
+        outline: none;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+    }
+
+    .ng-dropdown-panel-items {
+        margin-top: 25px;
+        width: 146px;
+        padding: 10px;
+        margin-left: -76px;
+        border: 1px solid #e2e8f0;
+        background-color: white;
+        cursor: pointer;
+        height: 136px;
+        box-shadow: 0 0 0 1px rgba(104, 113, 150, 0.1),
+            0 2.5px 3px -1.5px rgba(200, 207, 233, 1),
+            0 4.5px 5px -1px rgba(216, 220, 235, 1);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 1);
+    }
+
+    .ng-option {
+        color: black;
+        height: 28px;
+        padding: 5px;
+        color: rgba(47, 48, 89, 1);
+        font-family: CircularStd-Book;
+        font-size: 14px;
+        font-weight: 400;
+        font-style: book;
+    }
+
+    .ng-option:hover {
+        background-color: #f1f5f9;
+    }
+
+    .ng-option-selected {
+        color: rgba(62, 64, 219, 1)
+    }
+}
+
+

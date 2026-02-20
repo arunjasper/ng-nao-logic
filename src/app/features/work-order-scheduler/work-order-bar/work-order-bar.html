@@ -1,0 +1,17 @@
+<div class="work-order-bar" [ngClass]="statusClass" [class.menu-open]="isMenuOpen" [style.left.px]="left()"
+    [style.width.px]="width()" role="listitem"
+    [attr.aria-label]="'Work order: ' + workOrder().data.name + ', Status: ' + statusLabel">
+    <span class="bar-name">{{ workOrder().data.name }}</span>
+    <span class="status-badge status-ml" [ngClass]="statusClass">{{ statusLabel }}</span>
+    <div class="menu-wrapper">
+        <button type="button" class="menu-trigger" (click)="onMenuToggle($event)">
+            &#8943;
+        </button>
+        @if (isMenuOpen) {
+        <div class="dropdown-menu" role="menu">
+            <button type="button" class="menu-item" role="menuitem" (click)="onEditOption($event)">Edit</button>
+            <button type="button" class="menu-item" role="menuitem" (click)="onDeleteOption($event)">Delete</button>
+        </div>
+        }
+    </div>
+</div>

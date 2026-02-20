@@ -1,0 +1,244 @@
+$font-family-base: 'Circular-Std', 'Helvetica Neue', sans-serif;
+$font-family: 'Circular-Std', sans-serif;
+$font-family-book: 'CircularStd-Book', 'Circular-Std', 'Helvetica Neue', sans-serif;
+$font-family-regular: 'CircularStd-Regular', 'Circular-Std', 'Helvetica Neue', sans-serif;
+
+$color-text-main: #2c3e50;
+$bg-color: rgba(255, 255, 255, 1);
+$color-page-title: rgba(3, 9, 41, 1);
+$color-header-text: rgba(104, 113, 150, 1);
+$row-border: #E2E8F0;
+
+$color-title: rgba(104, 113, 150, 1);
+$color-text: rgba(3, 9, 41, 1);
+$bg-white: rgba(255, 255, 255, 1);
+$bg-alt: rgba(250, 251, 253, 1);
+$hover-bg: #eef2ff;
+$hover-row-bg: #f0f4ff;
+
+$complete-bg: rgba(248, 255, 243, 1);
+$complete-border: rgba(209, 250, 179, 1);
+$complete-badge-bg: rgba(225, 255, 204, 1);
+$complete-badge-text: rgba(8, 162, 104, 1);
+
+$in-progress-bg: rgba(237, 238, 255, 1);
+$in-progress-border: rgba(222, 224, 255, 1);
+$in-progress-badge-bg: rgba(214, 216, 255, 1);
+$in-progress-badge-text: rgba(62, 64, 219, 1);
+
+$blocked-bg: rgba(255, 252, 241, 1);
+$blocked-border: rgba(255, 245, 207, 1);
+$blocked-badge-bg: rgba(252, 238, 181, 1);
+$blocked-badge-text: rgba(177, 54, 0, 1);
+
+$open-bg: rgba(228, 253, 255, 1);
+$open-border: rgba(206, 251, 255, 1);
+$open-badge-bg: rgba(200, 253, 255, 1);
+$open-badge-text: rgba(0, 176, 191, 1);
+
+// Primary Colors
+$primary-shade-2: #3E40DB;
+$element-primary-3: #5659FF;
+$element-primary-6: #AAAFFF;
+
+// Text Colors
+$text-primary: rgba(3, 9, 41, 1);
+$text-4-labels: #687196;
+$text-6-disabled: #D8DCEB;
+
+// Utility Colors
+$border-color: rgba(230, 235, 240, 1);
+$bg-light: #FAFBFC;
+$bg-white: #FFFFFF;
+
+// Status Colors - Complete color system for all status states
+// Open status
+$status-open-bg:  rgb(200, 253, 255);
+$status-open-text: rgba(62, 64, 219, 1);
+$status-open-bar-bg: rgba(228, 253, 255, 1);
+$status-open-bar-border: rgba(206, 251, 255, 1);
+
+
+// In Progress status
+$status-in-progress-bg: rgba(214, 216, 255, 1);
+$status-in-progress-text: rgba(62, 64, 219, 1);
+$status-in-progress-bar-bg: rgba(238, 240, 255, 1);
+$status-in-progress-bar-border: rgba(222, 224, 255, 1);
+
+// Complete status
+$status-complete-bg: rgba(225, 255, 204, 1);
+$status-complete-text: rgba(8, 162, 104, 1);
+$status-complete-bar-bg: rgba(248, 255, 243, 1);
+$status-complete-bar-border: rgba(209, 250, 179, 1);
+
+// Blocked status
+$status-blocked-bg: rgba(252, 238, 181, 1);
+$status-blocked-text: rgba(177, 54, 0, 1);
+$status-blocked-bar-bg: rgba(255, 252, 241, 1);
+$status-blocked-bar-border: rgba(255, 245, 207, 1);
+
+// Error Colors
+$error-bg: #fef2f2;
+$error-border: #fecaca;
+$error-text: #dc2626;
+// Hover Colors
+$hover-bg: #eef2ff;
+$hover-row-bg: #f0f4ff;
+
+$font-circular: "CircularStd-Medium", "Circular-Std", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+$font-nunito: "Nunito", sans-serif;
+
+// Font Sizes
+$font-size-base: 13px;
+$font-size-md: 14px;
+$font-size-lg: 20px;
+$font-size-xl: 24px;
+$line-height-title: 34px;
+$row-height: 48px;
+$header-height: 32px;
+$panel-width: 591px;
+$work-centers-width: 220px;
+$work-centers-width-mobile: 160px;
+
+
+$border-radius-sm: 3px;
+$border-radius-md: 4px;
+$border-radius-lg: 6px;
+
+
+$padding-xs: 4px;
+$padding-sm: 8px;
+$padding-md: 12px;
+$padding-lg: 16px;
+$padding-xl: 24px;
+$padding-xxl: 32px;
+
+
+$transition-fast: 0.15s ease;
+$transition-normal: 0.2s ease;
+$transition-slow: 0.3s ease-out;
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.15);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.15);
+$shadow-panel: -4px 0 20px rgba(0, 0, 0, 0.1);
+$z-index-dropdown: 100;
+$z-index-tooltip: 1000;
+$z-index-panel: 1000;
+
+@mixin font-circular($size: $font-size-md, $weight: 500) {
+    font-family: $font-circular;
+    font-size: $size;
+    font-weight: $weight;
+}
+
+@mixin text-h3 {
+    @include font-circular($font-size-xl, 500);
+    color: $text-primary;
+    line-height: $line-height-title;
+    margin: 0;
+}
+
+@mixin text-label {
+    font-family: $font-nunito;
+    font-size: $font-size-md;
+    font-weight: 400;
+    color: $text-4-labels;
+}
+
+@mixin text-primary {
+    @include font-circular($font-size-md, 500);
+    color: $text-primary;
+}
+
+@mixin status-badge-colors {
+    &.status-open {
+        background-color: $status-open-bg;
+        color: $status-open-text;
+    }
+
+    &.status-in-progress {
+        background-color: $status-in-progress-bg;
+        color: $status-in-progress-text;
+    }
+
+    &.status-complete {
+        background-color: $status-complete-bg;
+        color: $status-complete-text;
+    }
+
+    &.status-blocked {
+        background-color: $status-blocked-bg;
+        color: $status-blocked-text;
+    }
+}
+
+
+@mixin work-order-bar-base {
+    position: absolute;
+    top: $padding-sm;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    padding: 0 $padding-md;
+    border-radius: 8px;
+    @include font-circular($font-size-md, 500);
+    cursor: pointer;
+    transition: box-shadow $transition-normal;
+    box-sizing: border-box;
+    white-space: nowrap;
+    z-index: 10;
+
+    &:hover {
+        box-shadow: $shadow-sm;
+    }
+}
+
+@mixin work-order-bar-status($bg-color, $text-color) {
+    background-color: $bg-color;
+    color: $text-color;
+}
+
+
+@mixin dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 10px $padding-lg;
+    @include font-circular($font-size-md, 500);
+    color: $text-primary;
+    background: transparent;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color $transition-normal;
+
+    &:hover {
+        background-color: $bg-light;
+    }
+}
+
+
+@mixin row-base($height: $row-height) {
+    height: $height;
+    display: flex;
+    align-items: center;
+    transition: background-color $transition-fast;
+}
+
+@mixin row-hover {
+    &.hovered {
+        background-color: $hover-row-bg;
+    }
+}
+
+
+@mixin text-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

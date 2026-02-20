@@ -1,0 +1,32 @@
+@if(workCenters().length > 0 && workOrders().length >0){
+<div class="wos-layout">
+    <div class="wos-header">
+        <h1 class="h1-title">Work Orders</h1>
+        <div class="controls-area">
+            <div class="timescale-label">Timescale</div>
+            <ng-select class="timescale-dd" [items]="zoomLevels" [ngModel]="currentZoomLevel()"
+                (ngModelChange)="updateZoomLevel($event)" [clearable]="false" [searchable]="false"
+                [dropdownPosition]="'bottom'">
+            </ng-select>
+        </div>
+    </div>
+    <div class="schedule-viewport">
+        <div class="grid-area">
+            <app-timeline-grid [workCenters]="workCenters()" [workOrders]="workOrders()" (editOrder)="onEditOrder($event)"
+                (deleteOrder)="onDeleteOrder($event)" [zoomLevel]="currentZoomLevel()"
+                (createOrder)="onCreateOrder($event)" (rowClick)="onCenterSelected($event)" />
+        </div>
+    </div>
+</div>
+<div>
+    <app-drawer [open]="isDrawerOpen()" (close)="onClose()">
+        @if(isDrawerOpen()) {
+        <app-work-order-form [mode]="formMode()" [initialData]="formData" [selectedWorkOrder]="selectedOrder()"
+            [selectedWorkCenter]="selectedCenter()" (save)="onSave($event)" (close)="onClose()">
+        </app-work-order-form>
+        }
+    </app-drawer>
+</div>
+<app-confirm (confirm)="deleteOrder()" (cancel)="toggleModal(false)" [isVisible]="openModal()"
+    [title]="'Confirm this action'" [message]="confirmMessage()" [confirmBtnText]="'Ok'" [cancelBtnText]="'Cancel'" />
+}
